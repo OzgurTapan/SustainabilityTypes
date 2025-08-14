@@ -134,7 +134,7 @@ sus25 <- sus25 %>% inner_join(x = sus25,
 
 ### Shiny ui
 
-Main ggiraph map indicated here as shiny’S `fluidrow` column.
+Main ggiraph map indicated here as `shiny` `fluidrow` column.
 
 ``` r
 # ui
