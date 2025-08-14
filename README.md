@@ -2,19 +2,33 @@ SustainabilityTypes
 ================
 Özgür Tapan
 
-\##Objective  
+### Objective
+
 To create interactive plots inside onclick modal dialog, using ggplot2
 and ggiraph libraries.  
 Final graph can be checked at
-<https://ozgurtapan.shinyapps.io/SustainabilityTypes/>
+<https://ozgurtapan.shinyapps.io/SustainabilityTypes>
 
-\##Load the libraries  
+![](https://github.com/OzgurTapan/SustainabilityTypes/blob/main/docs/map.png)
+![](https://github.com/OzgurTapan/SustainabilityTypes/blob/main/docs/plot.png)
+
+### Load the libraries
+
 Outlines of countries taken from the `maps` library. Data cleaning,
 organizing and transforming operations done using `tidyverse`. Dynamic
 plots created from ggplot2 with ggiraph extension wrapped inside a shiny
 app.
 
-\##Tidying data  
+``` r
+#Dependencies
+library(shiny)
+library(maps)
+library(tidyverse)
+library(ggiraph)
+```
+
+### Tidying data
+
 Purrr’s vectorized functions used on `mutate` for faster operations.  
 After data wrangling operations done on both the data and the map
 outlines, they merged together.
@@ -118,7 +132,8 @@ sus25 <- sus25 %>% inner_join(x = sus25,
                               )
 ```
 
-\##Shiny ui  
+### Shiny ui
+
 Main ggiraph map indicated here as shiny’S `fluidrow` column.
 
 ``` r
@@ -136,13 +151,16 @@ ui <- fluidPage(
 )
 ```
 
-\##Plot inside onclick modal dialog  
+### Plot inside onclick modal dialog
+
 GGiraph’s `data_id` used to capture clicked value inside the main plot
 than included as an input inside `observeEvent`.  
 Onclick plot included inside a `modalDialog`.
 
 ``` r
 # server
+
+# Drawing main map
 server <- function(input, output){
   output$my_map <- renderGirafe({
     girafe_map <- sus25 %>%
@@ -203,7 +221,7 @@ server <- function(input, output){
   })
   
   
-# Drawing diagram inside modal dialog
+# Drawing plot inside modal dialog
   observeEvent(input$my_map_selected,{
     showModal(modalDialog(
       renderPlot({
