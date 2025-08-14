@@ -4,8 +4,8 @@ SustainabilityTypes
 
 ### Objective
 
-To create interactive plots inside onclick modal dialog, using ggplot2
-and ggiraph libraries.  
+To create interactive plots inside onclick modal dialog, using `ggplot2`
+and `ggiraph` libraries.  
 Final graph can be checked at
 <https://ozgurtapan.shinyapps.io/SustainabilityTypes>
 
